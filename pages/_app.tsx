@@ -1,8 +1,16 @@
-import '../styles/globals.css'
+import React from 'react'
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { NextUIProvider } from '@nextui-org/react'
+
+import '../styles/globals.css'
+
+function MyApp ({ Component, pageProps }: AppProps) {
+  return (
+    <NextUIProvider>
+      <Component {...pageProps} />
+    </NextUIProvider>
+  )
 }
 
 export default MyApp
