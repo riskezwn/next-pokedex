@@ -1,19 +1,38 @@
 import React from 'react'
 
+import { GetStaticProps } from 'next'
 import type { NextPage } from 'next'
 
-import { Button } from '@nextui-org/react'
 import { Layout } from '../components/layouts'
+import { pokeApi } from '../api'
+import { PokemonListResponse, SmallPokemon } from '../interfaces'
+import { PokemonList } from '../components/pokemon'
 
-const Home: NextPage = () => {
+interface Props {
+  pokemons: SmallPokemon[]
+}
+
+const Home: NextPage<Props> = ({ pokemons }) => {
   return (
     <Layout title='Pokédex'>
-      <h1>Hello World</h1>
-      <Button color="gradient">
-        This is a button
-      </Button>
+      <PokemonList pokemonList={pokemons} />
     </Layout>
   )
+}
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const { data } = await pokeApi.get<PokemonListResponse>('/pokemon?limit=151')
+  const pokemons: SmallPokemon[] = data.results.map((poke, i) => ({
+    ...poke,
+    id: i + 1,
+    img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${i + 1}.png`
+  }))
+
+  return {
+    props: {
+      pokemons
+    }
+  }
 }
 
 export default Home
