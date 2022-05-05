@@ -1,11 +1,12 @@
 import React from 'react'
 
 import { GetStaticProps, NextPage, GetStaticPaths } from 'next'
-import { Button, Card, Container, Grid, Text, Image } from '@nextui-org/react'
+import { Button, Card, Container, Grid, Text, Image, Row } from '@nextui-org/react'
 
 import { Layout } from '../../components/layouts'
 import { PokemonFull } from '../../interfaces'
 import { pokeApi } from '../../api'
+import { PokemonTypeCard } from '../../components/pokemon/PokemonTypeCard'
 
 interface Props {
   pokemon: PokemonFull
@@ -18,7 +19,7 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
       <Grid.Container gap={2} css={{
         marginTop: '5px'
       }}>
-        <Grid xs={12} sm={4}>
+        <Grid xs={12} sm={4} direction='column'>
           <Card hoverable css={{
             padding: '30px'
           }}>
@@ -31,6 +32,13 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
               />
             </Card.Body>
           </Card>
+            <Row gap={0} style={{ padding: '5px' }}>
+              {
+                pokemon.types.map(type => (
+                  <PokemonTypeCard key={type.type.name} type={type.type.name}/>
+                ))
+              }
+            </Row>
         </Grid>
         <Grid xs={12} sm={8}>
           <Card css={{ padding: '1em' }}>
@@ -43,7 +51,10 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
                 Save in favorites
               </Button>
             </Card.Header>
-            <Card.Body>
+            <Card.Body css={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
               <Text size={30}>Sprites:</Text>
               <Container display='flex' direction='row' gap={0}>
                 <Image
