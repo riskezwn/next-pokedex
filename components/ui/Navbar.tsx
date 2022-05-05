@@ -1,8 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { useTheme as useNextTheme } from 'next-themes'
-import { Spacer, Switch, Text, useTheme } from '@nextui-org/react'
+import { Spacer, Switch, Text, useTheme, Link } from '@nextui-org/react'
 import { MoonIcon, SunIcon } from '../../assets'
+import NextLink from 'next/link'
 
 export const Navbar = () => {
   const { setTheme } = useNextTheme()
@@ -23,9 +24,17 @@ export const Navbar = () => {
         width={70}
         height={70}
       />
-      <Text h2 weight='bold'>Pokédex</Text>
+      <NextLink href="/" passHref>
+        <Link>
+          <Text h2 weight='bold'>Pokédex</Text>
+        </Link>
+      </NextLink>
       <Spacer css={{ flex: 1 }}/>
-      <Text b margin='1em'>Favourites</Text>
+      <NextLink href="/favorites" passHref>
+        <Link>
+          <Text b margin='1em'>Favorites</Text>
+        </Link>
+      </NextLink>
       <Switch
         checked={isDark}
         size='lg'
