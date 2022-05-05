@@ -16,7 +16,7 @@ export const Navbar = () => {
       alignItems: 'center',
       justifyContent: 'start',
       padding: '0 20px',
-      backgroundColor: theme?.colors.backgroundContrast.value
+      backgroundColor: theme?.colors.background.value
     }}>
       <Image
         src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png'
