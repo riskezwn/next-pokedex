@@ -4,9 +4,11 @@ import { GetStaticProps, NextPage, GetStaticPaths } from 'next'
 import { Button, Card, Container, Grid, Text, Image, Row } from '@nextui-org/react'
 
 import { Layout } from '../../components/layouts'
+import { PokemonTypeCard } from '../../components/pokemon/PokemonTypeCard'
+import { PokemonStats } from '../../components/pokemon/PokemonStats'
+
 import { PokemonFull } from '../../interfaces'
 import { pokeApi } from '../../api'
-import { PokemonTypeCard } from '../../components/pokemon/PokemonTypeCard'
 
 interface Props {
   pokemon: PokemonFull
@@ -14,6 +16,15 @@ interface Props {
 
 const Pokemon: NextPage<Props> = ({ pokemon }) => {
   const pageTitle = pokemon.name[0].toUpperCase() + pokemon.name.substring(1)
+  const stats = [
+    { label: 'HP', value: pokemon.stats[0].base_stat },
+    { label: 'Attack', value: pokemon.stats[1].base_stat },
+    { label: 'Defense', value: pokemon.stats[2].base_stat },
+    { label: 'Special Attack', value: pokemon.stats[3].base_stat },
+    { label: 'Special Defense', value: pokemon.stats[4].base_stat },
+    { label: 'Speed', value: pokemon.stats[5].base_stat }
+  ]
+
   return (
     <Layout title={pageTitle}>
       <Grid.Container gap={2} css={{
@@ -55,7 +66,7 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
               display: 'flex',
               justifyContent: 'center'
             }}>
-              <Text size={30}>Sprites:</Text>
+              <Text h3>Sprites</Text>
               <Container display='flex' direction='row' gap={0}>
                 <Image
                   src={pokemon.sprites.front_default}
@@ -83,6 +94,21 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
                 />
               </Container>
             </Card.Body>
+          </Card>
+        </Grid>
+      </Grid.Container>
+      <Grid.Container gap={2} css={{
+        marginTop: '5px'
+      }}>
+        <Grid xs={12} sm={4} direction='column'>
+          <Card hoverable>Hola</Card>
+        </Grid>
+        <Grid xs={12} sm={8}>
+          <Card hoverable css={{
+            padding: '1em'
+          }}>
+            <Text h3>Stats</Text>
+            <PokemonStats stats={stats}/>
           </Card>
         </Grid>
       </Grid.Container>
