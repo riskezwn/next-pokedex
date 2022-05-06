@@ -13,11 +13,11 @@ interface Props {
 export const PokemonList: FC<Props> = ({ pokemonList }) => {
   return (
     <Grid.Container gap={2} justify='flex-start'>
-        {
-          pokemonList.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon}/>
-          ))
-        }
-      </Grid.Container>
+      {
+        pokemonList.map((pokemon) => (
+          <PokemonCard key={pokemon.id} pokemon={pokemon}/>
+        ))
+      }
+    </Grid.Container>
   )
 }

@@ -28,8 +28,10 @@ const TYPES: { [key: string]: any } = {
 
 export const PokemonTypeCard: FC<Props> = ({ type }) => {
   return (
-    <Col>
-      <Card css={{
+    <Col css={{
+      marginLeft: '3px'
+    }}>
+      <Card hoverable css={{
         backgroundColor: TYPES[type]
       }}>
         <Text h6 size={15} color="white" transform='capitalize'>

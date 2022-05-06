@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { GetStaticProps, NextPage, GetStaticPaths } from 'next'
 import { Button, Card, Container, Grid, Text, Image, Row } from '@nextui-org/react'
@@ -9,12 +9,15 @@ import { PokemonStats } from '../../components/pokemon/PokemonStats'
 
 import { PokemonFull } from '../../interfaces'
 import { pokeApi } from '../../api'
+import { localFavorites } from '../../utils'
 
 interface Props {
   pokemon: PokemonFull
 }
 
 const Pokemon: NextPage<Props> = ({ pokemon }) => {
+  const [isInFavorites, setIsInFavorites] = useState(typeof window === 'object' && localFavorites.existsInFavorites(pokemon.id))
+
   const pageTitle = pokemon.name[0].toUpperCase() + pokemon.name.substring(1)
   const stats = [
     { label: 'HP', value: pokemon.stats[0].base_stat },
@@ -24,6 +27,11 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
     { label: 'Special Defense', value: pokemon.stats[4].base_stat },
     { label: 'Speed', value: pokemon.stats[5].base_stat }
   ]
+
+  const handleToggleFavorite = () => {
+    localFavorites.toggleFavorite(pokemon.id)
+    setIsInFavorites(!isInFavorites)
+  }
 
   return (
     <Layout title={pageTitle}>
@@ -43,7 +51,9 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
               />
             </Card.Body>
           </Card>
-            <Row gap={0} style={{ padding: '5px' }}>
+            <Row css={{
+              marginTop: '10px'
+            }}>
               {
                 pokemon.types.map(type => (
                   <PokemonTypeCard key={type.type.name} type={type.type.name}/>
@@ -58,8 +68,11 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
               justifyContent: 'space-between'
             }}>
               <Text h1 transform='capitalize'>{pokemon.name}</Text>
-              <Button color='gradient' ghost>
-                Save in favorites
+              <Button
+                color='gradient'
+                ghost={!isInFavorites}
+                onClick={handleToggleFavorite}>
+                  {isInFavorites ? 'Remove from favorites' : 'Add to favorites'}
               </Button>
             </Card.Header>
             <Card.Body css={{
@@ -97,17 +110,17 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
           </Card>
         </Grid>
       </Grid.Container>
-      <Grid.Container gap={2} css={{
-        marginTop: '5px'
-      }}>
-        <Grid xs={12} sm={4} direction='column'>
-          <Card hoverable>Hola</Card>
+      <Grid.Container gap={2}>
+        <Grid xs={12} sm={4}>
+          <Card hoverable css={{ p: 30 }}>
+            <Text h1>{pokemon.id}</Text>
+          </Card>
         </Grid>
         <Grid xs={12} sm={8}>
           <Card hoverable css={{
             padding: '1em'
           }}>
-            <Text h3>Stats</Text>
+            <Text h3 margin={3}>Base stats</Text>
             <PokemonStats stats={stats}/>
           </Card>
         </Grid>
