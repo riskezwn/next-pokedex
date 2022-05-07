@@ -4,7 +4,7 @@ import { GetStaticProps, NextPage, GetStaticPaths } from 'next'
 import { Card, Grid, Text, Row } from '@nextui-org/react'
 
 import { pokeApi } from '../../api'
-import { PokemonFull } from '../../interfaces'
+import { PokemonFull, PokemonListResponse } from '../../interfaces'
 import { Layout } from '../../components/layouts'
 import { PokemonTypeCard, PokemonStats, PokemonMainCard, PokemonImageCard } from '../../components/pokemon'
 
@@ -12,7 +12,7 @@ interface Props {
   pokemon: PokemonFull
 }
 
-const Pokemon: NextPage<Props> = ({ pokemon }) => {
+const PokemonByName: NextPage<Props> = ({ pokemon }) => {
   const { id, name, sprites, image, stats, types } = pokemon
 
   const pageTitle = name[0].toUpperCase() + name.substring(1)
@@ -58,18 +58,20 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const allPokemon = [...Array(151)].map((value, i) => `${i + 1}`)
+  const { data } = await pokeApi.get<PokemonListResponse>('/pokemon?limit=151')
+  const { results } = data
+  const allPokemon = results.map(({ name }) => name)
   return {
-    paths: allPokemon.map(id => ({
-      params: { id }
+    paths: allPokemon.map(name => ({
+      params: { name }
     })),
     fallback: false
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { id } = params as { id: string }
-  const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${id}`)
+  const { name } = params as { name: string }
+  const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${name}`)
 
   const pokemonData = {
     name: data.name,
@@ -99,4 +101,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Pokemon
+export default PokemonByName
