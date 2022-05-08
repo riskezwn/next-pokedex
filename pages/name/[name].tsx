@@ -50,7 +50,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       pokemon
-    }
+    },
+    revalidate: 86400 // 60 * 60 * 24
   }
 }
 

@@ -11,7 +11,6 @@ import { PokemonFull } from '../../interfaces'
 
 
 export const PokemonPage: FC<PokemonFull> = ( { id, name, sprites, image, stats, types, height, weight, genus, description, ability } ) => {
-  console.log(id, name);
   return (
     <>
       <Grid.Container gap={2} css={{
