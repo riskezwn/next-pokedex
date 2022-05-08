@@ -1,9 +1,12 @@
 import React from 'react'
+
 import Image from 'next/image'
+import NextLink from 'next/link'
 import { useTheme as useNextTheme } from 'next-themes'
 import { Spacer, Switch, Text, useTheme, Link } from '@nextui-org/react'
+
 import { MoonIcon, SunIcon } from '../../assets'
-import NextLink from 'next/link'
+import logo from '../../assets/logo.png'
 
 export const Navbar = () => {
   const { setTheme } = useNextTheme()
@@ -19,13 +22,13 @@ export const Navbar = () => {
       backgroundColor: theme?.colors.background.value
     }}>
       <Image
-        src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png'
+        src={logo}
         alt='app icon'
-        width={70}
-        height={70}
+        width={40}
+        height={40}
       />
       <NextLink href="/" passHref>
-        <Link>
+        <Link css={{ marginLeft: '5px' }}>
           <Text h2 weight='bold'>Pokédex</Text>
         </Link>
       </NextLink>
