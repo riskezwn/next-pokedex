@@ -196,6 +196,12 @@ export interface PokemonFull {
   sprites: Sprites;
   types: TypeElement[];
   stats: Stat[];
+  height: number;
+  weight: number;
+  description: string;
+  genus: string;
+  abilities: Ability[];
+  ability: string;
 }
 
 export interface Sprites {
@@ -228,4 +234,15 @@ export interface Other {
 
 export interface Home {
   front_default: string
+}
+
+export interface Ability {
+  ability: Species;
+  is_hidden: boolean;
+  slot: number;
+}
+
+export interface Species {
+  name: string;
+  url: string;
 }

@@ -11,7 +11,7 @@ interface Props {
 export const GenerationLink:FC<Props> = ({ text, href }) => {
   return (
     <NextLink href={href} passHref>
-      <Button color='error'>
+      <Button>
         <Text b color='$white'>{text}</Text>
       </Button>
     </NextLink>

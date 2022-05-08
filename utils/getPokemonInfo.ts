@@ -1,9 +1,14 @@
 import { pokeApi } from '../api'
-import { PokemonFull } from '../interfaces'
+import { PokemonFull, PokemonSpecie } from '../interfaces'
 
 export const getPokemonInfo = async (nameOrId: string) => {
   try {
     const { data } = await pokeApi.get<PokemonFull>(`/pokemon/${nameOrId}`)
+    const dataSpecies = await pokeApi.get<PokemonSpecie>(`/pokemon-species/${nameOrId}`)
+    const specie = dataSpecies.data
+
+    const genera = specie.genera.find(({ language }) => language.name === 'en')
+    const description = specie.flavor_text_entries.find(({ language }) => language.name === 'en')
 
     return {
       name: data.name,
@@ -23,7 +28,12 @@ export const getPokemonInfo = async (nameOrId: string) => {
         { label: 'Special Attack', value: data.stats[3].base_stat },
         { label: 'Special Defense', value: data.stats[4].base_stat },
         { label: 'Speed', value: data.stats[5].base_stat }
-      ]
+      ],
+      height: data.height * 10,
+      weight: data.weight,
+      genus: genera?.genus,
+      description: description?.flavor_text,
+      ability: data.abilities[0].ability.name
     }
   } catch (error) {
     return null
