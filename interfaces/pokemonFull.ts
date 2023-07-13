@@ -230,10 +230,16 @@ export interface TypeType {
 
 export interface Other {
   home: Home;
+  'official-artwork': OfficialArtwork
 }
 
 export interface Home {
   front_default: string
+}
+
+export interface OfficialArtwork {
+  front_default: string;
+  back_default: string;
 }
 
 export interface Ability {

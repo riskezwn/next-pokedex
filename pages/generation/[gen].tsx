@@ -38,7 +38,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const pokemons: SmallPokemon[] = data.results.map((poke, i) => ({
     ...poke,
     id: i + (first + 1),
-    img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${i + (first + 1)}.png`
+    img: (Number(params?.gen) < 9) 
+      ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${i + (first + 1)}.png`
+      : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i + (first + 1)}.png`
   }))
 
   return {

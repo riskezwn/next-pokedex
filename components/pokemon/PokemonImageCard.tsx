@@ -9,7 +9,7 @@ interface Props {
 
 export const PokemonImageCard:FC<Props> = ({ name, image }) => {
   return (
-    <Card hoverable css={{
+    <Card isHoverable css={{
       padding: '30px'
     }}>
       <Card.Body>

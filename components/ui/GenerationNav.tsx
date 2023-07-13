@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Button, Row } from '@nextui-org/react'
+import { Button, Navbar, Row } from '@nextui-org/react'
 
 import { GenerationLink } from './GenerationLink'
+import { useRouter } from 'next/router'
 
-const GENERATIONS = [
+export const GENERATIONS = [
   {
     text: 'Gen I',
     href: '/generation/1'
@@ -44,15 +45,15 @@ const GENERATIONS = [
 ]
 
 export const GenerationNav = () => {
+  const router = useRouter()
+  
   return (
-    <Row justify='center' wrap='wrap'>
-      <Button.Group>
-        {
-          GENERATIONS.map(({ text, href }) => (
-            <GenerationLink key={text} text={text} href={href}/>
-          ))
-        }
-      </Button.Group>
-    </Row>
+    <>
+      {
+        GENERATIONS.map(({ text, href }) => (
+          <Navbar.Link isActive={router.asPath === href} key={text} href={href}>{text}</Navbar.Link>
+        ))
+      }
+    </>
   )
 }

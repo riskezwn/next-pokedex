@@ -9,11 +9,11 @@ export const getPokemonInfo = async (nameOrId: string) => {
 
     const genera = specie.genera.find(({ language }) => language.name === 'en')
     const description = specie.flavor_text_entries.find(({ language }) => language.name === 'en')
-
+    
     return {
       name: data.name,
       id: data.id,
-      image: data.sprites.other?.home.front_default,
+      image: data.sprites.other?.home.front_default || data.sprites.other?.['official-artwork'].front_default,
       sprites: {
         front_default: data.sprites.front_default,
         back_default: data.sprites.back_default,

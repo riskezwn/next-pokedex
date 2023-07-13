@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 
 import Head from 'next/head'
 
-import { Navbar, GenerationNav } from '../ui'
+import { Nav, GenerationNav } from '../ui'
 
 interface Props {
   children?: ReactNode,
@@ -30,8 +30,7 @@ export const Layout:FC<Props> = ({ children, title }) => {
         <meta property="og:description" content={`Page about ${title}`} />
         <meta property="og:image" content={`${origin}/banner.png`} />
       </Head>
-      <Navbar />
-      <GenerationNav />
+      <Nav />
       <main style={{
         padding: '0 20px'
       }}>

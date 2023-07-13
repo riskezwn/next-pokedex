@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 import NextLink from 'next/link'
-import { Button, Text } from '@nextui-org/react'
+import { Link } from '@nextui-org/react'
 
 interface Props {
   text: string,
@@ -10,10 +10,10 @@ interface Props {
 
 export const GenerationLink:FC<Props> = ({ text, href }) => {
   return (
-    <NextLink href={href} passHref>
-      <Button>
-        <Text b color='$white'>{text}</Text>
-      </Button>
+    <NextLink href={href}>
+      <Link block color="primary">
+        {text}
+      </Link>
     </NextLink>
   )
 }

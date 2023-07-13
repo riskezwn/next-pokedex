@@ -37,10 +37,10 @@ export const PokemonPage: FC<PokemonFull> = ( { id, name, sprites, image, stats,
           <PokemonInfoCard id={id} weight={weight} height={height} description={description} genus={genus} ability={ability}/>
         </Grid>
         <Grid xs={12} sm={8}>
-          <Card hoverable css={{
+          <Card isHoverable css={{
             padding: '1em'
           }}>
-            <Text h3 margin={3}>Base stats</Text>
+            <Text h3 css={{margin: 0}}>Base stats</Text>
             <PokemonStats stats={stats}/>
           </Card>
         </Grid>

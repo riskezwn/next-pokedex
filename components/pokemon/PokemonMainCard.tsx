@@ -57,30 +57,30 @@ export const PokemonMainCard: FC<Props> = ({ id, name, sprites }) => {
       }}>
         <Text h3>Sprites</Text>
         <Container display='flex' direction='row' gap={0}>
-          <Image
+          {sprites.front_default && <Image
             src={sprites.front_default}
             alt={name}
             width={100}
             height={100}
-          />
-          <Image
+          />}
+          {sprites.back_default && <Image
             src={sprites.back_default}
             alt={name}
             width={100}
             height={100}
-          />
-          <Image
+          />}
+          {sprites.front_shiny && <Image
             src={sprites.front_shiny}
             alt={name}
             width={100}
             height={100}
-          />
-          <Image
+          />}
+          {sprites.back_shiny && <Image
             src={sprites.back_shiny}
             alt={name}
             width={100}
             height={100}
-          />
+          />}
         </Container>
       </Card.Body>
     </Card>

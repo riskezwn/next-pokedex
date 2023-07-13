@@ -13,7 +13,7 @@ interface Props {
 
 export const PokemonInfoCard: FC<Props> = ({ description, genus, height, weight, id, ability }) => {
   return (
-    <Card hoverable css={{ p: 30 }}>
+    <Card isHoverable css={{ p: 30 }}>
       <Text h1>{id}</Text>
       <Text h5 transform='uppercase' css={{
         marginBottom: '20px',
@@ -28,7 +28,7 @@ export const PokemonInfoCard: FC<Props> = ({ description, genus, height, weight,
       </Text>
       <Grid.Container gap={2}>
         <Grid sm={12} xs={12}>
-          <Card bordered css={{
+          <Card variant='bordered' css={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -40,7 +40,7 @@ export const PokemonInfoCard: FC<Props> = ({ description, genus, height, weight,
           </Card>
         </Grid>
         <Grid sm={6} xs={6}>
-          <Card bordered css={{
+          <Card variant='bordered' css={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -49,13 +49,13 @@ export const PokemonInfoCard: FC<Props> = ({ description, genus, height, weight,
           }}> 
               <Text b size='10px'>WEIGHT</Text>
               <div>
-                <Text  b h2 margin={0} css={{ display: 'inline' }}>{weight}</Text>
+                <Text b h2 css={{ display: 'inline', margin: 0 }}>{weight}</Text>
                 <Text small b css={{ opacity: 0.7 }}>KG</Text>
               </div>
           </Card>
         </Grid>
         <Grid sm={6} xs={6}>
-          <Card bordered css={{
+          <Card variant='bordered' css={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -64,7 +64,7 @@ export const PokemonInfoCard: FC<Props> = ({ description, genus, height, weight,
           }}> 
               <Text b size='10px'>HEIGHT</Text>
               <div>
-                <Text b h2 margin={0} css={{ display: 'inline' }}>{height}</Text>
+                <Text b h2 css={{ display: 'inline', margin: 0 }}>{height}</Text>
                 <Text small b css={{ opacity: 0.7 }}>CM</Text>
               </div>
           </Card>

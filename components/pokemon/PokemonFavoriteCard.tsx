@@ -15,7 +15,7 @@ export const PokemonFavoriteCard:FC<Props> = ({ pokemonId }) => {
 
   return (
     <Grid xs={12} lg={3} sm={6} md={4} xl={2}>
-      <Card hoverable clickable onClick={handleFavouriteClick}>
+      <Card isPressable isHoverable onClick={handleFavouriteClick}>
         <Card.Body css={{ p: 30 }}>
           <Card.Image
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemonId}.png`}

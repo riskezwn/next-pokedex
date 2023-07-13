@@ -31,12 +31,14 @@ export const PokemonTypeCard: FC<Props> = ({ type }) => {
     <Col css={{
       marginLeft: '3px'
     }}>
-      <Card hoverable css={{
+      <Card isHoverable css={{
         backgroundColor: TYPES[type]
       }}>
-        <Text h6 size={15} color="white" transform='capitalize'>
-          {type}
-        </Text>
+        <Card.Body>
+          <Text b transform='capitalize'>
+            {type}
+          </Text>
+        </Card.Body>
       </Card>
     </Col>
   )
