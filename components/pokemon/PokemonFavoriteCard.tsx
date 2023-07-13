@@ -21,6 +21,10 @@ export const PokemonFavoriteCard:FC<Props> = ({ pokemonId }) => {
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemonId}.png`}
             width='100%'
             height='100%'
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src=`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+            }}
           />
         </Card.Body>
       </Card>

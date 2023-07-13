@@ -7,7 +7,7 @@ import { Switch, Text, useTheme, Link, Navbar } from '@nextui-org/react'
 
 import { MoonIcon, SunIcon } from '../../assets'
 import logo from '../../assets/logo.png'
-import { GenerationNav } from './GenerationNav'
+import { GENERATIONS, GenerationNav } from './GenerationNav'
 
 export const Nav = () => {
   const { setTheme } = useNextTheme()
@@ -16,6 +16,11 @@ export const Nav = () => {
   return (
     <Navbar isBordered variant="floating">
       <Navbar.Brand>
+        <Navbar.Toggle aria-label="toggle navigation" css={{
+          '@md': {
+            display: 'none'
+          },
+        }} />
         <Image
           src={logo}
           alt='app icon'
@@ -28,14 +33,14 @@ export const Nav = () => {
           </Link>
         </NextLink>
       </Navbar.Brand>
-      <Navbar.Content hideIn="xs" variant="highlight-rounded">
+      <Navbar.Content hideIn="md" variant="highlight-rounded">
         <GenerationNav />
       </Navbar.Content>
       <Navbar.Content>
         <Navbar.Link color="inherit" href="#">
           <NextLink href="/favorites">
-            <Link>
-              <Text b css={{margin: '1em'}}>Favorites</Text>
+            <Link color="primary">
+              <Text b>Favorites</Text>
             </Link>
           </NextLink>
         </Navbar.Link>
@@ -49,6 +54,21 @@ export const Nav = () => {
           />
         </Navbar.Item>
       </Navbar.Content>
+      <Navbar.Collapse>
+        {GENERATIONS.map(({text, href}) => (
+          <Navbar.CollapseItem key={text}>
+            <Link
+              color="inherit"
+              css={{
+                minWidth: "100%",
+              }}
+              href={href}
+            >
+              {text}
+            </Link>
+          </Navbar.CollapseItem>
+        ))}
+      </Navbar.Collapse>
     </Navbar>  
   )
 }
