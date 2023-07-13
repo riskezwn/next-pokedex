@@ -39,6 +39,11 @@ export const allGenerations: Generation[] = [
   {
     gen: '8',
     first: 809,
-    count: 89
+    count: 96
+  },
+  {
+    gen: '9',
+    first: 906,
+    count: 110
   }
 ]
