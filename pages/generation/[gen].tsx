@@ -22,7 +22,7 @@ const Generation: NextPage<Props> = ({ pokemons }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const allPokemon = [...Array(8)].map((value, i) => `${i + 1}`)
+  const allPokemon = [...Array(9)].map((value, i) => `${i + 1}`)
   return {
     paths: allPokemon.map(gen => ({
       params: { gen }
