@@ -36,6 +36,10 @@ const GENERATIONS = [
   {
     text: 'Gen VIII',
     href: '/generation/8'
+  },
+  {
+    text: 'Gen IX',
+    href: '/generation/9'
   }
 ]
 
