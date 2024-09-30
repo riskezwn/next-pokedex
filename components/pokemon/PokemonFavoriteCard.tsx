@@ -10,7 +10,7 @@ interface Props {
 export const PokemonFavoriteCard:FC<Props> = ({ pokemonId }) => {
   const router = useRouter()
   const handleFavouriteClick = () => {
-    router.push(`/pokemon/${pokemonId}`, undefined, { scroll: false })
+    router.push(`/pokemon/${pokemonId}`)
   }
 
   return (

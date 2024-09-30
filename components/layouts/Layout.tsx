@@ -3,6 +3,7 @@ import React, { FC, ReactNode } from 'react'
 import Head from 'next/head'
 
 import { Nav, GenerationNav } from '../ui'
+import { useScrollRestoration } from '../../hooks/useScrollRestoration'
 
 interface Props {
   children?: ReactNode,
@@ -12,6 +13,8 @@ interface Props {
 const origin = (typeof window === 'undefined') ? '' : window.location.origin
 
 export const Layout:FC<Props> = ({ children, title }) => {
+  useScrollRestoration()
+  
   return (
     <>
       <Head>

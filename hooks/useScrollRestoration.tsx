@@ -10,7 +10,7 @@ export function useScrollRestoration() {
 
       window.history.scrollRestoration = 'manual';
 
-      const onBeforeUnload = (event) => {
+      const onBeforeUnload = (event: any) => {
         window.sessionStorage.setItem(router.asPath, JSON.stringify({ x: window.scrollX, y: window.scrollY }));
       };
 
@@ -18,7 +18,7 @@ export function useScrollRestoration() {
         window.sessionStorage.setItem(router.asPath, JSON.stringify({ x: window.scrollX, y: window.scrollY }));
       };
 
-      const onRouteChangeComplete = (url) => {
+      const onRouteChangeComplete = (url: string) => {
         const scrollPos = window.sessionStorage.getItem(url);
         if (scrollPos) {
           const { x, y } = JSON.parse(scrollPos);
